@@ -1,0 +1,45 @@
+  << ejercisio 3 >>
+  
+precios = {"manzana": 2, "naranja": 2.5, "platano": 4, "piña": 3}
+while True:
+    fruta = input("Dime la fruta que has vendido: ")
+    if fruta.lower() not in precios:
+        print("Fruta no existe.")
+    else:
+        cantidad = int(input("Dime la cantidad de frutas que has vendido: "))
+        print("El precio es de %f" % (cantidad * precios[fruta]))
+    opcion = input("¿Quieres vender otra fruta (s/n)")
+    while opcion.lower() != "s" and opcion.lower() != "n":
+        opcion = input("¿Quieres vender otra fruta (s/n)")
+    if opcion.lower() == "n":
+        break
+        
+        
+  << ejercisio 6 >>
+  
+  
+  fichero=open("personas.txt","w")
+fichero.write("1;Carlos;Pérez;05/01/1989")
+personas=["\n2;Manuel;Heredia;26/12/1973","\n3;Rosa;Campos;12/06/1961","\n4;David;García;25/07/2006"]
+fichero.writelines(personas)
+fichero.close()
+
+
+
+from io import open
+
+fichero = open('personas.txt','r', encoding="utf8")
+lineas = fichero.readlines()
+fichero.close()
+
+personas = []
+for linea in lineas:
+    # Borramos los saltos de línea y separamos
+    campos = linea.replace("\n", "").split(";")  
+    persona = {"id":campos[0], "nombre":campos[1], 
+               "apellido":campos[2], "nacimiento":campos[3]}
+    personas.append(persona)
+
+for p in personas:
+    print("(id={}) {} {} => {} ".format( p['id'], p['nombre'], 
+                                         p['apellido'], p['nacimiento']) )
